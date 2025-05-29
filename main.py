@@ -38,14 +38,14 @@ conn.close()
 
 app = Flask(__name__)
 
-# Carregar modelo e scaler
-modelo_ia = load('modelo_ia.joblib')
-scaler = load('scaler.joblib')  # Carregar o normalizador
 
-# Mapeamento inverso da predição
+modelo_ia = load('modelo_ia.joblib')
+scaler = load('scaler.joblib') 
+
+
 mapa_resultado_inverso = {0: "econômico", 1: "balanceado", 2: "performance"}
 
-# Blockchain simples
+
 class Block:
     def __init__(self, index, data, previous_hash):
         self.index = index
@@ -78,36 +78,35 @@ blockchain = Blockchain()
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    # Conectar ao banco de dados
+
     conn = sqlite3.connect("iot_data.db")
     cursor = conn.cursor()
 
-    # Buscar todos os dispositivos cadastrados
+
     cursor.execute("SELECT dispositivo FROM dispositivos")
     dispositivos = cursor.fetchall()
 
-    # Fechar a conexão com o banco de dados
+
     conn.close()
 
-    # Exibir a página com os dispositivos
+
     return render_template("index.html", dispositivos=dispositivos)
 
 @app.route("/prever", methods=["POST"])
 def prever():
-    # Receber dados do formulário
+
     energia = float(request.form["energia"])
     banda = float(request.form["banda"])
     prioridade = float(request.form["prioridade"])
     estabilidade = float(request.form["estabilidade"])
     dispositivo = request.form["dispositivo"]
 
-    # Consultar o banco de dados para obter o modo e os parâmetros anteriores
     conn = sqlite3.connect("iot_data.db")
     cursor = conn.cursor()
     cursor.execute("SELECT energia, banda, prioridade, estabilidade, resultado FROM dados WHERE dispositivo = ?", (dispositivo,))
     dispositivo_existente = cursor.fetchone()
 
-    # Se o dispositivo já existe, pegar os dados anteriores
+
     if dispositivo_existente:
         energia_anterior, banda_anterior, prioridade_anterior, estabilidade_anterior, resultado_anterior = dispositivo_existente
         modo_anterior = resultado_anterior
@@ -115,13 +114,13 @@ def prever():
         energia_anterior = banda_anterior = prioridade_anterior = estabilidade_anterior = resultado_anterior = "Não disponível"
         modo_anterior = "Não disponível"
     
-    # IA: normalização + previsão
+
     entrada = np.array([[energia, banda, prioridade, estabilidade]])
-    entrada_normalizada = scaler.transform(entrada)  # Normalizar os dados
+    entrada_normalizada = scaler.transform(entrada)  
     pred = modelo_ia.predict(entrada_normalizada)[0]
     resultado = mapa_resultado_inverso[pred]
 
-    # Se o dispositivo já existe, atualizar os dados no banco de dados
+  
     if dispositivo_existente:
         cursor.execute("""
             UPDATE dados
@@ -129,7 +128,7 @@ def prever():
             WHERE dispositivo = ?
         """, (energia, banda, prioridade, estabilidade, resultado, dispositivo))
     else:
-        # Se o dispositivo não existe, inserir os dados como um novo registro
+    
         cursor.execute("""
             INSERT INTO dados (dispositivo, energia, banda, prioridade, estabilidade, resultado)
             VALUES (?, ?, ?, ?, ?, ?)
@@ -138,7 +137,7 @@ def prever():
     conn.commit()
     conn.close()
 
-    # Registrar na blockchain simulada
+
     dados = {
         "dispositivo": dispositivo,
         "energia": energia,
@@ -149,7 +148,7 @@ def prever():
     }
     blockchain.add_block(str(dados))
 
-    # Passar os dados para o template
+
     return render_template("resultado.html", 
                            dispositivo=dispositivo, 
                            modo_anterior=modo_anterior,
@@ -167,7 +166,7 @@ def prever():
 @app.route("/cadastro", methods=["GET", "POST"])
 def cadastro():
     if request.method == "POST":
-        # Receber dados do formulário de cadastro
+        # Recebe os dados
         dispositivo = request.form["dispositivo"]
         tipo = request.form["tipo"]
         localizacao = request.form["localizacao"]
@@ -175,7 +174,6 @@ def cadastro():
         comunicacao = request.form["comunicacao"]
         status = request.form["status"]
 
-        # Inserir os dados no banco de dados
         conn = sqlite3.connect("iot_data.db")
         cursor = conn.cursor()
         cursor.execute("""
