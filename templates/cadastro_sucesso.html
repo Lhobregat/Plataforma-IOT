@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Concluído</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cadastro Concluído</h1>
+        </header>
+        
+        <div class="result-content">
+            <h2>O dispositivo "{{ dispositivo }}" foi cadastrado com sucesso!</h2>
+            <a href="{{ url_for('index') }}" class="btn">Voltar para a Página Inicial</a>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Sistema IoT - Blockchain & IA</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Definindo fontes e cores básicas */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc; /* Cor de fundo suave */
+    color: #333;
+}
+
+/* Container principal */
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;  /* Adicionando borda arredondada */
+}
+
+/* Cabeçalho */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #1e5bb5; /* Cor de azul mais forte para título */
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Estilo para a página do formulário */
+.form-container {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #e9f7ff;  /* Fundo suave azul */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #1e5bb5;  /* Azul escuro */
+}
+
+/* Estilo para os campos de entrada */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f7f9fc;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #1e5bb5;
+    outline: none;
+}
+
+/* Botões de Ação */
+.form-actions {
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
+
+.submit-btn {
+    background-color: #1e5bb5; /* Azul */
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: #004b99; /* Azul mais escuro */
+}
+
+/* Estilo para o resultado da previsão */
+.result-content {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #e9f7ff; /* Fundo suave */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.result-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #1e5bb5; /* Azul escuro */
+}
+
+.result-info {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.result-info p {
+    margin-bottom: 10px;
+}
+
+.result {
+    font-weight: bold;
+    color: #28a745;  /* Verde para resultado positivo */
+}
+
+.actions {
+    text-align: center;
+}
+
+.back-btn {
+    background-color: #1e5bb5; /* Azul */
+    color: white;
+}
+
+.back-btn:hover {
+    background-color: #004b99; /* Azul mais escuro */
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1rem;
+    color: #888;
+}
+
+footer p {
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+}

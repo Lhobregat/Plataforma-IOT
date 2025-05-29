@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Dispositivos IoT</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Inclui o header fixo -->
+    {% include 'header.html' %}
+
+    <div class="container">
+        <header>
+            <h1>Cadastro de Dispositivos IoT</h1>
+        </header>
+        
+        <div class="form-container">
+            <h2>Preencha os detalhes do dispositivo</h2>
+            <form action="/cadastro" method="POST">
+                <label for="dispositivo">Nome do Dispositivo:</label>
+                <input type="text" id="dispositivo" name="dispositivo" required>
+
+                <label for="tipo">Tipo de Dispositivo:</label>
+                <select id="tipo" name="tipo">
+                    <option value="camera">Câmera de Segurança</option>
+                    <option value="sensor_temperatura">Sensor de Temperatura</option>
+                    <option value="medidor_energia">Medidor de Energia</option>
+                    <option value="outro">Outro</option>
+                </select>
+
+                <label for="localizacao">Localização:</label>
+                <input type="text" id="localizacao" name="localizacao" required>
+
+                <label for="modelo">Modelo/Versão:</label>
+                <input type="text" id="modelo" name="modelo">
+
+                <label for="comunicacao">Protocolo de Comunicação:</label>
+                <select id="comunicacao" name="comunicacao">
+                    <option value="wifi">Wi-Fi</option>
+                    <option value="bluetooth">Bluetooth</option>
+                    <option value="zigbee">Zigbee</option>
+                    <option value="ethernet">Ethernet</option>
+                </select>
+
+                <label for="status">Status do Dispositivo:</label>
+                <select id="status" name="status">
+                    <option value="ativo">Ativo</option>
+                    <option value="inativo">Inativo</option>
+                </select>
+
+                <button type="submit" class="btn">Cadastrar Dispositivo</button>
+            </form>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Sistema IoT - Blockchain & IA</p>
+        </footer>
+    </div>
+</body>
+</html>

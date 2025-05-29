@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plataforma IoT Inteligente</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Estilo para o header fixo */
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .navbar-logo h1 {
+      margin: 0;
+    }
+
+    .navbar-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 16px;
+    }
+
+    .navbar-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header fixo -->
+  <header>
+    <div class="navbar">
+      <div class="navbar-logo">
+        <h1>Sistema IoT</h1>
+      </div>
+      <div class="navbar-links">
+        <a href="{{ url_for('index') }}">Início</a>
+        <a href="{{ url_for('cadastro') }}">Cadastrar Dispositivo</a>
+      </div>
+    </div>
+  </header>
+
+  <h1>Simulação IoT com IA</h1>
+  <form method="POST" action="/prever">
+    <label for="dispositivo">Dispositivo:</label>
+    <select id="dispositivo" name="dispositivo" required>
+      <option value="">Selecione um dispositivo</option>
+      {% for dispositivo in dispositivos %}
+        <option value="{{ dispositivo[0] }}">{{ dispositivo[0] }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="energia">Energia (%):</label>
+    <input type="number" id="energia" name="energia" required min="0" max="100" step="0.1" />
+
+    <label for="banda">Banda (Mbps):</label>
+    <input type="number" id="banda" name="banda" required min="0" max="1000" step="0.1" />
+
+    <label for="prioridade">Prioridade (0-100):</label>
+    <input type="number" id="prioridade" name="prioridade" required min="0" max="100" step="1" />
+
+    <label for="estabilidade">Estabilidade (0-100):</label>
+    <input type="number" id="estabilidade" name="estabilidade" required min="0" max="100" step="1" />
+
+    <button type="submit">Enviar para Análise</button>
+  </form>
+</body>
+</html>

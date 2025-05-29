@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado da Previsão</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% include 'header.html' %}
+
+    <div class="container">
+        <h1>Resultado da Previsão de Desempenho</h1>
+        <div class="result-content">
+            <h2>Dispositivo Atualizado</h2>
+            <div class="result-info">
+                <p><strong>Dispositivo:</strong> <span class="result">{{ dispositivo }}</span></p>
+                <p><strong>Modo Operacional Anterior:</strong> <span class="result">{{ modo_anterior }}</span></p>
+                <p><strong>Parâmetros Anteriores:</strong></p>
+                <ul>
+                    <li><strong>Energia:</strong> {{ energia_anterior }}</li>
+                    <li><strong>Banda:</strong> {{ banda_anterior }}</li>
+                    <li><strong>Prioridade:</strong> {{ prioridade_anterior }}</li>
+                    <li><strong>Estabilidade:</strong> {{ estabilidade_anterior }}</li>
+                </ul>
+                <p><strong>Modo Operacional Atual:</strong> <span class="result">{{ resultado }}</span></p>
+                <p><strong>Novos Parâmetros:</strong></p>
+                <ul>
+                    <li><strong>Energia:</strong> {{ energia }}</li>
+                    <li><strong>Banda:</strong> {{ banda }}</li>
+                    <li><strong>Prioridade:</strong> {{ prioridade }}</li>
+                    <li><strong>Estabilidade:</strong> {{ estabilidade }}</li>
+                </ul>
+                <p><strong>Hash do Bloco Atualizado:</strong> <span class="result">{{ hash }}</span></p>
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2025 Sistema IoT - Blockchain & IA</p>
+        </footer>
+    </div>
+</body>
+</html>
